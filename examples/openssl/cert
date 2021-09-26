@@ -15,3 +15,5 @@ openssl req -newkey rsa:2048 -nodes -keyout /tmp/domain-private.pem -subj "/CN=d
 openssl x509 -req -CA /tmp/rootCA.cert.pem -CAkey /tmp/private.pem -in /tmp/domain.csr -out /tmp/domain.cert.pem -days 1 -CAcreateserial -extfile $(realpath "$(dirname "$0")")/domain.ext
 # openssl x509 -req -engine tpm2tss -keyform engine -CA /tmp/rootCA.cert.pem -CAkey /tmp/private.pem -in /tmp/domain.csr -out /tmp/domain.cert.pem -days 1 -CAcreateserial -extfile $(realpath "$(dirname "$0")")/domain.ext
 openssl x509 -text -noout -in /tmp/domain.cert.pem
+
+openssl verify -verbose -CAfile /tmp/rootCA.cert.pem /tmp/domain.cert.pem
