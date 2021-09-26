@@ -8,4 +8,6 @@ Inspired e.g. by https://wiki.openssl.org/index.php/Command_Line_Utilities or ht
 
 1. [`openssl [gen]rsa`](../examples/openssl/rsa)
 
+1. [`openssl` for EC`](../examples/openssl/ec) _ToDo - this doesn't work yet as-is_
+
 <!-- TODO Inline content from scripts above and run it and update MD with output automatically -->
