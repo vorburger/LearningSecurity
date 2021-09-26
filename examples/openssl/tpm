@@ -1,0 +1,27 @@
+#!/bin/bash
+set -euxo pipefail
+
+ls /sys/firmware/efi
+
+file /dev/tpm0 /dev/tpmrm0
+journalctl -k --no-pager --grep=tpm
+cat /sys/class/tpm/tpm0/device/description
+cat /sys/class/tpm/tpm0/tpm_version_major
+
+openssl engine -t -c tpm2tss
+openssl rand -engine tpm2tss -hex 10
+
+tpm2tss-genkey -h
+tpm2tss-genkey -v -a rsa /tmp/private.pem
+cat /tmp/private.pem
+
+openssl pkey -engine tpm2tss -inform engine -in /tmp/private.pem -pubout -out /tmp/public.pem
+file /tmp/public.pem
+cat /tmp/public.pem
+openssl pkey -in /tmp/public.pem -pubin -noout -text
+
+echo "hello, world" >/tmp/hello.txt
+openssl pkeyutl -encrypt -in /tmp/hello.txt -inkey /tmp/public.pem -pubin -out /tmp/rsa.bin
+file /tmp/rsa.bin
+
+openssl pkeyutl -engine tpm2tss -keyform engine -decrypt -in /tmp/rsa.bin -inkey /tmp/private.pem
