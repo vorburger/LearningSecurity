@@ -1,0 +1,8 @@
+openssl version -a
+# 1.1.1
+
+openssl list -help
+openssl list -commands
+openssl list -digest-commands
+openssl list -cipher-commands
+openssl list -public-key-methods

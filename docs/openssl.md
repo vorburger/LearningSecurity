@@ -1,21 +1,11 @@
 # OpenSSL
 
-<!-- Put this into a script and run it and update MD with putput automatically -->
+Inspired e.g. by https://wiki.openssl.org/index.php/Command_Line_Utilities or https://www.keycdn.com/blog/openssl-tutorial :
 
-Inspired e.g. by https://www.keycdn.com/blog/openssl-tutorial:
+1. [`openssl list`](../examples/openssl/list)
 
-    openssl version -a
-    # 1.1.1
+1. [`openssl enc`](../examples/openssl/enc)
 
-    openssl list -help
-    openssl list -commands
-    openssl list -digest-commands
-    openssl list -cipher-commands
-    openssl list -public-key-methods
+1. [`openssl [gen]rsa`](../examples/openssl/rsa)
 
-    echo "hello, world" | openssl enc -aes-256-cbc -pbkdf2 -pass pass:demo
-    echo "hello, world" | openssl enc -aes-256-cbc -pbkdf2 -pass pass:demo | openssl enc -aes-256-cbc -pbkdf2 -pass pass:demo -d
-
-    openssl genrsa -out /tmp/private.pem 4096
-    openssl rsa -in /tmp/private.pem -text -noout
-    
+<!-- TODO Inline content from scripts above and run it and update MD with output automatically -->

@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euxo pipefail
+
+# TODO Use genpkey instead of genrsa
+openssl genrsa -out /tmp/private.pem 512
+file /tmp/private.pem
+cat /tmp/private.pem
+openssl rsa -in /tmp/private.pem -noout -text
+
+openssl rsa -in /tmp/private.pem -pubout -out /tmp/public.pem
+file /tmp/public.pem
+cat /tmp/public.pem
+
+echo "hello, world" >/tmp/hello.txt
+openssl pkeyutl -encrypt -in /tmp/hello.txt -inkey /tmp/public.pem -pubin -out /tmp/rsa.bin
+file /tmp/rsa.bin
+
+openssl pkeyutl -decrypt -in /tmp/rsa.bin -inkey /tmp/private.pem
