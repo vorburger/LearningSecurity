@@ -17,13 +17,7 @@ Inspired e.g. by https://wiki.openssl.org/index.php/Command_Line_Utilities or e.
 
 1. [Signing](concepts.md#signatures) by [example](../examples/openssl/sign)
 
+1. [Certificates](concepts.md#certificates) by [example](../examples/openssl/cert),
+   based e.g. on https://www.baeldung.com/openssl-self-signed-cert.
+
 <!-- TODO Inline content from scripts above and run it and update MD with output automatically -->
-
-
-## ToDo
-
-* Cert
-
-* Generate private key on a YubiKey using PIV, see https://developers.yubico.com/PIV/.
-  This is traditionally for non-web applications (although it should be possible to use for client certs, no?),
-  and WebAuthn is the modern way to go instead.

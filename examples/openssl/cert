@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euxo pipefail
+
+$(realpath "$(dirname "$0")")/rsa
+# $(realpath "$(dirname "$0")")/tpm
+
+openssl req -key /tmp/private.pem -new -x509 -days 2 -subj "/CN=Test Root CA" -out /tmp/rootCA.cert.pem
+# openssl req -engine tpm2tss -keyform engine -key /tmp/private.pem -new -x509 -days 2 -subj "/CN=Test Root CA" -out /tmp/rootCA.cert.pem
+file /tmp/rootCA.cert.pem
+cat /tmp/rootCA.cert.pem
+# xdg-open /tmp/rootCA.cert.pem &
+openssl x509 -text -noout -in /tmp/rootCA.cert.pem
+
+openssl req -newkey rsa:2048 -nodes -keyout /tmp/domain-private.pem -subj "/CN=domain.test" -out /tmp/domain.csr
+openssl x509 -req -CA /tmp/rootCA.cert.pem -CAkey /tmp/private.pem -in /tmp/domain.csr -out /tmp/domain.cert.pem -days 1 -CAcreateserial -extfile $(realpath "$(dirname "$0")")/domain.ext
+# openssl x509 -req -engine tpm2tss -keyform engine -CA /tmp/rootCA.cert.pem -CAkey /tmp/private.pem -in /tmp/domain.csr -out /tmp/domain.cert.pem -days 1 -CAcreateserial -extfile $(realpath "$(dirname "$0")")/domain.ext
+openssl x509 -text -noout -in /tmp/domain.cert.pem
