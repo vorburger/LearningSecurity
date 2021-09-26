@@ -26,9 +26,11 @@ RSA is not the only public-key cryptography system. Another one is e.g.
 
 
 
-## Digital signature
+## Signatures
 
-[Digital signature](https://en.wikipedia.org/wiki/Digital_signature)...
+_[Signing](https://en.wikipedia.org/wiki/Digital_signature)_ an input with a private key produces a _signature_ which can be _verified_ against the same input given a public key.
+
+Input to signing is typically be limited in size.  Therefore a digest (hash) of an input file is used.
 
 
 ## Trust

@@ -9,4 +9,7 @@ by using a code language to [encrypt](concepts.md#encryption) what only that fri
 
 To lock your house and piggy bank, you already [use keys](concepts.md#keys).
 
+When you hand in a test you [sign it](concepts#signatures) with your own name, to say "I wrote this" (unless you
+cheated and your friend helped you with answers).  Your passport (and money..) is "signed" by the government of your country.
+
 Security for 0s and 1s provides what you already use in your physical reality for the digital age based on provable mathematics.

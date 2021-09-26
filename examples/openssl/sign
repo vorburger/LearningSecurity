@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euxo pipefail
+
+$(realpath "$(dirname "$0")")/rsa
+
+openssl pkeyutl -sign -in /tmp/hello.txt -inkey /tmp/private.pem -out /tmp/signature.bin
+openssl pkeyutl -verify -sigfile /tmp/signature.bin -in /tmp/hello.txt -inkey /tmp/public.pem -pubin
+
+truncate -s 10M /tmp/big.file
+openssl dgst -list
+openssl dgst -md5 -out /tmp/digest.bin /tmp/big.file
+openssl pkeyutl -sign -in /tmp/digest.bin -inkey /tmp/private.pem -out /tmp/signature.bin
+openssl pkeyutl -verify -sigfile /tmp/signature.bin -in /tmp/digest.bin -inkey /tmp/public.pem -pubin
