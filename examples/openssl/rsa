@@ -1,18 +1,22 @@
 #!/bin/bash
 set -euxo pipefail
 
-# TODO Use genpkey instead of genrsa
-openssl genrsa -out /tmp/private.pem 512
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:512 -out /tmp/private.pem
 file /tmp/private.pem
 cat /tmp/private.pem
-openssl rsa -in /tmp/private.pem -noout -text
+openssl pkey -in /tmp/private.pem -noout -text
 
-openssl rsa -in /tmp/private.pem -pubout -out /tmp/public.pem
+openssl pkey -in /tmp/private.pem -pubout -out /tmp/public.pem
 file /tmp/public.pem
 cat /tmp/public.pem
+openssl pkey -in /tmp/public.pem -pubin -noout -text
 
 echo "hello, world" >/tmp/hello.txt
 openssl pkeyutl -encrypt -in /tmp/hello.txt -inkey /tmp/public.pem -pubin -out /tmp/rsa.bin
 file /tmp/rsa.bin
 
 openssl pkeyutl -decrypt -in /tmp/rsa.bin -inkey /tmp/private.pem
+
+# Only works for very data!! To encrypt & decrypt larger files, you would use RSA for exchanging a symmetric key like AES.
+# truncate -s 10M /tmp/big.file
+# openssl pkeyutl -encrypt -in /tmp/big.file -inkey /tmp/public.pem -pubin -out /tmp/big-crypted.file
