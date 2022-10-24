@@ -8,6 +8,8 @@
 
 1. https://pomcor.com/2017/06/02/keys-in-browser/
 
+1. https://github.com/FiloSottile/yubikey-agent
+
 1. Generate private key on a YubiKey using PIV, see https://developers.yubico.com/PIV/.
    This is traditionally for non-web applications (although it should be possible to use for client certs, no?),
    and WebAuthn is the modern way to go instead.
