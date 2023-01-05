@@ -8,11 +8,11 @@ Security for 1s and 0s isn't hard. Let's learn it!
 
 1. [OpenSSL](docs/openssl.md)
 
-1. [Java Security](docs/java.md)
+1. [WebAuthn](docs/webauthn.md)
 
 1. [Web Crypto API](docs/web.md)
 
-1. [WebAuthn](docs/webauthn.md)
+1. [Java Security](docs/java.md)
 
 1. [gRPC](docs/gRPC.md)
 

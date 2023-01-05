@@ -10,6 +10,8 @@
 
 1. https://github.com/FiloSottile/yubikey-agent
 
+1. Password manager demo? ;)
+
 1. Generate private key on a YubiKey using PIV, see https://developers.yubico.com/PIV/.
    This is traditionally for non-web applications (although it should be possible to use for client certs, no?),
    and WebAuthn is the modern way to go instead.
